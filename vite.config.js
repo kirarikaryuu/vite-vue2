@@ -13,6 +13,12 @@ export default defineConfig({
     }),
     viteCommonjs({ skipPreBuild: true })
   ],
+  build: {
+    // 打包时将cjs编译为esm
+    commonjsOptions: {
+      transformMixedEsModules: true
+    },
+  },
   vite: {
     disabledLint: true
   },
@@ -21,6 +27,7 @@ export default defineConfig({
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     alias: [
       { find: '@', replacement: path.resolve(__dirname, 'src') },
+      { find: '#', replacement: path.resolve(__dirname, 'public') },
       {
         find: /^~/,
         replacement: ''
